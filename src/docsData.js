@@ -2,7 +2,7 @@ export const sops = [
   {
     type: "sop",
     slug: "store-opening-process",
-    title: "Store Opening Process",
+    title: "Store Opening Process (In Progress)",
     description: "Complete end-to-end process for telco coordination, permitting, installation, and network deployment for new store openings.",
     steps: 14,
     lastUpdated: "May 2026",
