@@ -281,7 +281,7 @@ export default function App() {
       {/* Header */}
       <header className={`site-header${scrolled ? " scrolled" : ""}`}>
         <div className="container header-wrap">
-          <a href="/" className="nav-brand">DocHub</a>
+          <a href="/" className="nav-brand">PMC Network Team</a>
           <button
             className="hamburger"
             aria-label="Toggle sidebar"
@@ -314,8 +314,8 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <p className="footer-name">DocHub — Documentation Repository</p>
-        <p>Built with the same design system as my portfolio</p>
+        <p className="footer-name">Power Mac Center — Network Team</p>
+        <p>Documentation Repository · SOPs & Templates</p>
       </footer>
     </>
   );
