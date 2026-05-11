@@ -1,4 +1,4 @@
-export const docs = [
+export const sops = [
   {
     type: "sop",
     slug: "store-opening-process",
@@ -72,7 +72,7 @@ export const docs = [
         number: 10,
         title: "Proceed with Network Deployment",
         content: "After activation is complete, proceed with the deployment and mobilization of the network equipment.",
-        note: "Refer to the Store Network Deployment Guide SOP for detailed equipment deployment steps."
+        note: "Refer to the Network Device Setup guides for detailed equipment deployment steps."
       },
       { type: "heading", text: "PLDT-Specific Process" },
       {
@@ -105,9 +105,12 @@ export const docs = [
         warning: "The TRF should be processed only once the telco activation schedule is already confirmed or ongoing. The same process applies for the second visit during the store opening."
       }
     ]
-  },
+  }
+];
+
+export const deviceSetups = [
   {
-    type: "sop",
+    type: "device",
     slug: "extreme-switch-setup",
     title: "Extreme Switch Setup",
     description: "Console-based factory reset and initial configuration procedure for Extreme Networks switches.",
@@ -158,7 +161,7 @@ export const docs = [
         number: 6,
         title: "Enter Store-Specific Configuration",
         content: "Switch configuration begins. Enter the store-specific switch configuration as provided.",
-        note: "Refer to the switch configuration template for the specific store."
+        note: "Refer to the Templates section for the specific store switch config."
       },
       {
         type: "step",
@@ -175,8 +178,8 @@ export const docs = [
       }
     ]
   },
-    {
-    type: "sop",
+  {
+    type: "device",
     slug: "fortinet-firewall-setup",
     title: "Fortinet Firewall Setup",
     description: "Initial configuration and restoration procedure for Fortinet firewalls at new store deployments.",
@@ -194,7 +197,7 @@ export const docs = [
         type: "step",
         number: 2,
         title: "Configure Network Settings",
-        content: "Open Macbook Settings, turn off WiFi, and go to Network. Navigate to LAN and get the IP address of the firewall.",
+        content: "Open Macbook Settings, turn off WiFi, and go to Network. Navigate to LAN and note the IP address of the firewall.",
         note: "The firewall IP is most likely 192.168.1.99."
       },
       {
@@ -202,16 +205,16 @@ export const docs = [
         number: 3,
         title: "Access Firewall Web Interface",
         content: "Copy the IP address and paste it into Safari. Log in with the default credentials.",
-        code: "Username: admin\nPassword: (blank)"
+        code: "Username: admin\nPassword: (blank — just press Enter)"
       },
-      { type: "heading", text: "Initial Setup Wizard" },
+      { type: "heading", text: "Setup Wizard" },
       {
         type: "step",
         number: 4,
         title: "Set Temporary Password",
         content: "The firewall will prompt you to enter a new password. Enter the temporary password.",
         code: "test",
-        warning: "This is a temporary password for initial setup. The configuration file will set the production password."
+        warning: "This is a temporary password. The configuration file from Sir Ross will overwrite it with the production password."
       },
       {
         type: "step",
@@ -279,9 +282,8 @@ export const docs = [
       }
     ]
   },
-  
   {
-    type: "sop",
+    type: "device",
     slug: "extreme-ap-setup",
     title: "Extreme Access Point Setup",
     description: "Physical setup, cloud onboarding, and verification procedure for Extreme Networks access points.",
@@ -357,7 +359,7 @@ export const templates = [
     title: "The Loop Switch Configuration",
     description: "Extreme Networks switch configuration for The Loop store. Requires console cable.",
     lastUpdated: "May 2026",
-    content: "! === THE LOOP SWITCH CONFIG ===\n! Requires console cable to configure\n! Last updated: May 2026\n\n! --- Connect via Console ---\n! 1. Connect console cable\n! 2. Open terminal\n! 3. Run: cd /dev\n! 4. Run: ls\n! 5. Run: screen tty.usb !(press tab, no space)\n\n! --- Login ---\nUsername: admin\nPassword: !(blank)\n\n! --- Factory Reset ---\nUnconfig switch all !(to factory reset)\nYes\nQuit\n\n! --- Delete Default Ports Config ---\nconf def del por all\n\n! --- Port Display Strings ---\nconfigure ports 1 display-string FW-TL_PMCF\nconfigure ports 2 display-string FW-The_Loop\nconfigure ports 9 display-string AP1\nconfigure ports 10 display-string AP2\n\n! --- VLAN: TL_PMCF (Tag 133) ---\ncre vlan tl_pmcf tag 133\nconf \"tl_pmcf\" ipaddress 192.168.1.3/24\nconf \"tl_pmcf\" add po 1,3-20\n\n! --- VLAN: The_Loop (Tag 134) ---\ncre vlan The_Loop tag 134\nconf vlan \"The_Loop\" ipaddress 192.168.2.3/24\nconf \"The_Loop\" add por 9-11 t\nconf \"The_Loop\" add por 2,21-24\n\n! --- Account: Admin ---\nConfig account admin password\nNSP@ssword2026!\n\n! --- Account: User ---\nConfig account user password\nNSUs3r2026!\n\n! --- Account: GianKarlo ---\nCreate Account User GianKarlo\nGKRamos@2025\n\n! --- SNMP ---\nconf snmp sysName <switch-name>\n\n! --- Save ---\nsave\nYes"
+    content: "! === THE LOOP SWITCH CONFIG ===\n! Requires console cable to configure\n! Last updated: May 2026\n\n! --- Connect via Console ---\n! 1. Connect console cable\n! 2. Open terminal\n! 3. Run: cd /dev\n! 4. Run: ls\n! 5. Run: screen tty.usb (press tab, no space)\n\n! --- Login ---\nUsername: admin\nPassword: (blank)\n\n! --- Factory Reset ---\nUnconfig switch all (to factory reset)\nYes\nQuit\n\n! --- Delete Default Ports Config ---\nconf def del por all\n\n! --- Port Display Strings ---\nconfigure ports 1 display-string FW-TL_PMCF\nconfigure ports 2 display-string FW-The_Loop\nconfigure ports 9 display-string AP1\nconfigure ports 10 display-string AP2\n\n! --- VLAN: TL_PMCF (Tag 133) ---\ncre vlan tl_pmcf tag 133\nconf \"tl_pmcf\" ipaddress 192.168.1.3/24\nconf \"tl_pmcf\" add po 1,3-20\n\n! --- VLAN: The_Loop (Tag 134) ---\ncre vlan The_Loop tag 134\nconf vlan \"The_Loop\" ipaddress 192.168.2.3/24\nconf \"The_Loop\" add por 9-11 t\nconf \"The_Loop\" add por 2,21-24\n\n! --- Account: Admin ---\nConfig account admin password\nNSP@ssword2026!\n\n! --- Account: User ---\nConfig account user password\nNSUs3r2026!\n\n! --- Account: GianKarlo ---\nCreate Account User GianKarlo\nGKRamos@2025\n\n! --- SNMP ---\nconf snmp sysName <switch-name>\n\n! --- Save ---\nsave\nYes"
   },
   {
     type: "template",
