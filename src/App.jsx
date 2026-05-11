@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { docs, templates } from "./docsData";
+import { sops, deviceSetups, templates } from "./docsData";
 
 
 function useScrollProgress() {
@@ -37,10 +37,14 @@ function useActiveSection(ids) {
 }
 
 
-function Sidebar({ docs, templates, activeSlug, onSelect, search, onSearchChange }) {
-  const filteredDocs = useMemo(
-    () => docs.filter((d) => d.title.toLowerCase().includes(search.toLowerCase())),
-    [docs, search]
+function Sidebar({ sops, deviceSetups, templates, activeSlug, onSelect, search, onSearchChange }) {
+  const filteredSops = useMemo(
+    () => sops.filter((d) => d.title.toLowerCase().includes(search.toLowerCase())),
+    [sops, search]
+  );
+  const filteredDevices = useMemo(
+    () => deviceSetups.filter((d) => d.title.toLowerCase().includes(search.toLowerCase())),
+    [deviceSetups, search]
   );
   const filteredTemplates = useMemo(
     () => templates.filter((t) => t.title.toLowerCase().includes(search.toLowerCase())),
@@ -74,16 +78,38 @@ function Sidebar({ docs, templates, activeSlug, onSelect, search, onSearchChange
 
       <div className="sidebar-section">
         <h3 className="sidebar-heading">📋 SOPs</h3>
-        {filteredDocs.length === 0 && (
+        {filteredSops.length === 0 && (
           <p className="sidebar-empty">No SOPs found</p>
         )}
-        {filteredDocs.map((doc) => (
+        {filteredSops.map((doc) => (
           <button
             key={doc.slug}
             className={`sidebar-link${activeSlug === doc.slug ? " active" : ""}`}
             onClick={() => onSelect(doc.slug)}
           >
             <span className="sidebar-link-icon">📄</span>
+            <div>
+              <span className="sidebar-link-title">{doc.title}</span>
+              {doc.steps && (
+                <span className="sidebar-link-meta">{doc.steps} steps</span>
+              )}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <div className="sidebar-section">
+        <h3 className="sidebar-heading">🔧 Network Device Setup</h3>
+        {filteredDevices.length === 0 && (
+          <p className="sidebar-empty">No device setups found</p>
+        )}
+        {filteredDevices.map((doc) => (
+          <button
+            key={doc.slug}
+            className={`sidebar-link${activeSlug === doc.slug ? " active" : ""}`}
+            onClick={() => onSelect(doc.slug)}
+          >
+            <span className="sidebar-link-icon">🔧</span>
             <div>
               <span className="sidebar-link-title">{doc.title}</span>
               {doc.steps && (
@@ -105,7 +131,7 @@ function Sidebar({ docs, templates, activeSlug, onSelect, search, onSearchChange
             className={`sidebar-link${activeSlug === tpl.slug ? " active" : ""}`}
             onClick={() => onSelect(tpl.slug)}
           >
-            <span className="sidebar-link-icon">🔧</span>
+            <span className="sidebar-link-icon">📝</span>
             <div>
               <span className="sidebar-link-title">{tpl.title}</span>
               <span className="sidebar-link-meta">Config template</span>
@@ -244,10 +270,10 @@ export default function App() {
   const progress = useScrollProgress();
   const [scrolled, setScrolled] = useState(false);
   const [search, setSearch] = useState("");
-  const [activeSlug, setActiveSlug] = useState(docs[0]?.slug || "");
+  const [activeSlug, setActiveSlug] = useState(sops[0]?.slug || "");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const allItems = useMemo(() => [...docs, ...templates], []);
+  const allItems = useMemo(() => [...sops, ...deviceSetups, ...templates], []);
   const sectionIds = useMemo(() => allItems.map((i) => i.slug), [allItems]);
   const active = useActiveSection(sectionIds);
 
@@ -299,13 +325,14 @@ export default function App() {
         <div className={`sidebar-overlay${sidebarOpen ? " open" : ""}`} onClick={() => setSidebarOpen(false)} />
         <div className={`sidebar-wrap${sidebarOpen ? " open" : ""}`}>
           <Sidebar
-            docs={docs}
-            templates={templates}
-            activeSlug={activeSlug}
-            onSelect={setActiveSlug}
-            search={search}
-            onSearchChange={setSearch}
-          />
+  sops={sops}
+  deviceSetups={deviceSetups}
+  templates={templates}
+  activeSlug={activeSlug}
+  onSelect={setActiveSlug}
+  search={search}
+  onSearchChange={setSearch}
+/>
         </div>
         <main className="main-content">
           <DocViewer item={currentItem} allItems={allItems} />
