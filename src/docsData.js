@@ -105,6 +105,172 @@ export const docs = [
         warning: "The TRF should be processed only once the telco activation schedule is already confirmed or ongoing. The same process applies for the second visit during the store opening."
       }
     ]
+  },
+  {
+    type: "sop",
+    slug: "extreme-switch-setup",
+    title: "Extreme Switch Setup",
+    description: "Console-based factory reset and initial configuration procedure for Extreme Networks switches.",
+    steps: 8,
+    lastUpdated: "May 2026",
+    sections: [
+      { type: "heading", text: "Console Connection" },
+      {
+        type: "step",
+        number: 1,
+        title: "Connect to Switch via Console",
+        content: "Connect to the switch using an RJ45 console cable. Open Terminal on the Macbook."
+      },
+      {
+        type: "step",
+        number: 2,
+        title: "Locate the Switch in Terminal",
+        content: "Input the following commands in Terminal to locate the switch. Press Enter after each step.",
+        code: "cd /dev\nls\nscreen tty.usb (press tab)"
+      },
+      {
+        type: "step",
+        number: 3,
+        title: "Login to Switch",
+        content: "Enter the login credentials.",
+        code: "Username: admin\nPassword: (blank)",
+        note: "Default credentials — just press Enter for the password."
+      },
+      { type: "heading", text: "Factory Reset" },
+      {
+        type: "step",
+        number: 4,
+        title: "Factory Reset the Switch",
+        content: "Input the following command to factory reset the switch, then confirm.",
+        code: "unconfig switch all\nyes",
+        warning: "This erases all existing configuration on the switch. Ensure this is the correct device before proceeding."
+      },
+      {
+        type: "step",
+        number: 5,
+        title: "Skip Security Configuration",
+        content: "In the next security choice prompt, input quit to skip.",
+        code: "quit"
+      },
+      { type: "heading", text: "Configuration & Finish" },
+      {
+        type: "step",
+        number: 6,
+        title: "Enter Store-Specific Configuration",
+        content: "Switch configuration begins. Enter the store-specific switch configuration as provided.",
+        note: "Refer to the switch configuration template for the specific store."
+      },
+      {
+        type: "step",
+        number: 7,
+        title: "Save and Disconnect",
+        content: "Save the configuration, then unplug the console cable from the switch.",
+        code: "save\nYes"
+      },
+      {
+        type: "step",
+        number: 8,
+        title: "Power Down",
+        content: "You can now unplug the power cord of the switch."
+      }
+    ]
+  },
+  {
+    type: "sop",
+    slug: "fortinet-firewall-setup",
+    title: "Fortinet Firewall Setup",
+    description: "Initial configuration and restoration procedure for Fortinet firewalls at new store deployments.",
+    steps: 12,
+    lastUpdated: "May 2026",
+    sections: [
+      { type: "heading", text: "Initial Connection" },
+      {
+        type: "step",
+        number: 1,
+        title: "Connect to Firewall",
+        content: "Connect an RJ45 cable from the Macbook into Port 1 of the Fortinet firewall."
+      },
+      {
+        type: "step",
+        number: 2,
+        title: "Configure Network Settings",
+        content: "Open Macbook Settings, turn off WiFi, and go to Network. Navigate to LAN and get the IP address of the firewall.",
+        note: "The firewall IP is most likely 192.168.1.99."
+      },
+      {
+        type: "step",
+        number: 3,
+        title: "Access Firewall Web Interface",
+        content: "Copy the IP address and paste it into Safari. Log in with the default credentials.",
+        code: "Username: admin\nPassword: (blank)"
+      },
+      { type: "heading", text: "Password Setup" },
+      {
+        type: "step",
+        number: 4,
+        title: "Set Temporary Password",
+        content: "The firewall will prompt you to enter a new password. Enter the temporary password.",
+        code: "test",
+        warning: "This is a temporary password for initial setup. The configuration file will set the production password."
+      },
+      {
+        type: "step",
+        number: 5,
+        title: "Relogin with New Password",
+        content: "Log in again with the temporary credentials.",
+        code: "Username: admin\nPassword: test"
+      },
+      { type: "heading", text: "Configuration Restoration" },
+      {
+        type: "step",
+        number: 6,
+        title: "Navigate to Restore",
+        content: "Click Profile in the upper right corner, go to Configuration, then click Restore."
+      },
+      {
+        type: "step",
+        number: 7,
+        title: "Upload Configuration File",
+        content: "Get the configuration file from Sir Ross. Upload it in the File option, then click OK and confirm.",
+        warning: "Verify the config file is for the correct store before uploading."
+      },
+      {
+        type: "step",
+        number: 8,
+        title: "Wait for Reboot",
+        content: "Wait for the firewall to reboot. This may take a few minutes."
+      },
+      { type: "heading", text: "Verification" },
+      {
+        type: "step",
+        number: 9,
+        title: "Check New IP Address",
+        content: "Go to Network settings and check the newly assigned IP address.",
+        note: "It should be 192.168.1.1."
+      },
+      {
+        type: "step",
+        number: 10,
+        title: "Login to New IP",
+        content: "Open Safari and enter the management URL. This should take you back to the login page.",
+        code: "https://192.168.1.1:4444"
+      },
+      {
+        type: "step",
+        number: 11,
+        title: "Verify Configuration",
+        content: "Enter credentials and check the interfaces, addresses, policies, and everything needed for the store deployment.",
+        note: "Confirm all settings match the store's network plan before proceeding."
+      },
+      { type: "heading", text: "Shutdown" },
+      {
+        type: "step",
+        number: 12,
+        title: "Properly Shutdown Firewall",
+        content: "After everything is checked, properly shutdown the firewall by clicking Profile at the upper right corner.",
+        warning: "Do not disconnect power without properly shutting down. This can corrupt the configuration."
+      }
+    ]
   }
 ];
 
