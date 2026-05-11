@@ -175,12 +175,12 @@ export const docs = [
       }
     ]
   },
-  {
+    {
     type: "sop",
     slug: "fortinet-firewall-setup",
     title: "Fortinet Firewall Setup",
     description: "Initial configuration and restoration procedure for Fortinet firewalls at new store deployments.",
-    steps: 12,
+    steps: 13,
     lastUpdated: "May 2026",
     sections: [
       { type: "heading", text: "Initial Connection" },
@@ -204,7 +204,7 @@ export const docs = [
         content: "Copy the IP address and paste it into Safari. Log in with the default credentials.",
         code: "Username: admin\nPassword: (blank)"
       },
-      { type: "heading", text: "Password Setup" },
+      { type: "heading", text: "Initial Setup Wizard" },
       {
         type: "step",
         number: 4,
@@ -220,44 +220,51 @@ export const docs = [
         content: "Log in again with the temporary credentials.",
         code: "Username: admin\nPassword: test"
       },
-      { type: "heading", text: "Configuration Restoration" },
       {
         type: "step",
         number: 6,
+        title: "Complete Setup Wizard",
+        content: "Go through the setup wizard sequence to skip automatic updates and cloud registration.",
+        code: "Click: Begin\nClick: Later\nDisable automatic patch upgrades\nSave and Continue\nClick: Later"
+      },
+      { type: "heading", text: "Configuration Restoration" },
+      {
+        type: "step",
+        number: 7,
         title: "Navigate to Restore",
         content: "Click Profile in the upper right corner, go to Configuration, then click Restore."
       },
       {
         type: "step",
-        number: 7,
+        number: 8,
         title: "Upload Configuration File",
         content: "Get the configuration file from Sir Ross. Upload it in the File option, then click OK and confirm.",
         warning: "Verify the config file is for the correct store before uploading."
       },
       {
         type: "step",
-        number: 8,
+        number: 9,
         title: "Wait for Reboot",
         content: "Wait for the firewall to reboot. This may take a few minutes."
       },
       { type: "heading", text: "Verification" },
       {
         type: "step",
-        number: 9,
+        number: 10,
         title: "Check New IP Address",
         content: "Go to Network settings and check the newly assigned IP address.",
         note: "It should be 192.168.1.1."
       },
       {
         type: "step",
-        number: 10,
+        number: 11,
         title: "Login to New IP",
         content: "Open Safari and enter the management URL. This should take you back to the login page.",
         code: "https://192.168.1.1:4444"
       },
       {
         type: "step",
-        number: 11,
+        number: 12,
         title: "Verify Configuration",
         content: "Enter credentials and check the interfaces, addresses, policies, and everything needed for the store deployment.",
         note: "Confirm all settings match the store's network plan before proceeding."
@@ -265,7 +272,7 @@ export const docs = [
       { type: "heading", text: "Shutdown" },
       {
         type: "step",
-        number: 12,
+        number: 13,
         title: "Properly Shutdown Firewall",
         content: "After everything is checked, properly shutdown the firewall by clicking Profile at the upper right corner.",
         warning: "Do not disconnect power without properly shutting down. This can corrupt the configuration."
