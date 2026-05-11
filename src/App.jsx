@@ -1,8 +1,8 @@
-// src/App.jsx
+
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { docs, templates } from "./docsData";
 
-// ── Hooks ─────────────────────────────────────────────────────────
+
 function useScrollProgress() {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
@@ -36,7 +36,7 @@ function useActiveSection(ids) {
   return active;
 }
 
-// ── Sub-components ────────────────────────────────────────────────
+
 function Sidebar({ docs, templates, activeSlug, onSelect, search, onSearchChange }) {
   const filteredDocs = useMemo(
     () => docs.filter((d) => d.title.toLowerCase().includes(search.toLowerCase())),
@@ -239,7 +239,7 @@ function escapeHtml(text) {
     .replace(/>/g, "&gt;");
 }
 
-// ── Main App ──────────────────────────────────────────────────────
+
 export default function App() {
   const progress = useScrollProgress();
   const [scrolled, setScrolled] = useState(false);
@@ -321,7 +321,7 @@ export default function App() {
   );
 }
 
-// ── CSS ───────────────────────────────────────────────────────────
+
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Quicksand:wght@400;500;600&display=swap');
 
