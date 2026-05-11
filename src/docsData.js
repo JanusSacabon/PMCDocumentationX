@@ -278,6 +278,178 @@ export const docs = [
         warning: "Do not disconnect power without properly shutting down. This can corrupt the configuration."
       }
     ]
+  },
+  {
+    type: "sop",
+    slug: "fortinet-firewall-setup",
+    title: "Fortinet Firewall Setup",
+    description: "Initial configuration and restoration procedure for Fortinet firewalls at new store deployments.",
+    steps: 13,
+    lastUpdated: "May 2026",
+    sections: [
+      { type: "heading", text: "Initial Connection" },
+      {
+        type: "step",
+        number: 1,
+        title: "Connect to Firewall",
+        content: "Connect an RJ45 cable from the Macbook into Port 1 of the Fortinet firewall."
+      },
+      {
+        type: "step",
+        number: 2,
+        title: "Configure Network Settings",
+        content: "Open Macbook Settings, turn off WiFi, and go to Network. Navigate to LAN and note the IP address of the firewall.",
+        note: "The firewall IP is most likely 192.168.1.99."
+      },
+      {
+        type: "step",
+        number: 3,
+        title: "Access Firewall Web Interface",
+        content: "Copy the IP address and paste it into Safari. Log in with the default credentials.",
+        code: "Username: admin\nPassword: (blank — just press Enter)"
+      },
+      { type: "heading", text: "Setup Wizard" },
+      {
+        type: "step",
+        number: 4,
+        title: "Set Temporary Password",
+        content: "The firewall will prompt you to enter a new password. Enter the temporary password.",
+        code: "test",
+        warning: "This is a temporary password. The configuration file from Sir Ross will overwrite it with the production password."
+      },
+      {
+        type: "step",
+        number: 5,
+        title: "Relogin with New Password",
+        content: "Log in again with the temporary credentials.",
+        code: "Username: admin\nPassword: test"
+      },
+      {
+        type: "step",
+        number: 6,
+        title: "Complete Setup Wizard",
+        content: "Go through the setup wizard sequence to skip automatic updates and cloud registration.",
+        code: "Click: Begin\nClick: Later\nDisable automatic patch upgrades\nSave and Continue\nClick: Later"
+      },
+      { type: "heading", text: "Configuration Restoration" },
+      {
+        type: "step",
+        number: 7,
+        title: "Navigate to Restore",
+        content: "Click Profile in the upper right corner, go to Configuration, then click Restore."
+      },
+      {
+        type: "step",
+        number: 8,
+        title: "Upload Configuration File",
+        content: "Get the configuration file from Sir Ross. Upload it in the File option, then click OK and confirm.",
+        warning: "Verify the config file is for the correct store before uploading."
+      },
+      {
+        type: "step",
+        number: 9,
+        title: "Wait for Reboot",
+        content: "Wait for the firewall to reboot. This may take a few minutes."
+      },
+      { type: "heading", text: "Verification" },
+      {
+        type: "step",
+        number: 10,
+        title: "Check New IP Address",
+        content: "Go to Network settings and check the newly assigned IP address.",
+        note: "It should be 192.168.1.1."
+      },
+      {
+        type: "step",
+        number: 11,
+        title: "Login to New IP",
+        content: "Open Safari and enter the management URL. This should take you back to the login page.",
+        code: "https://192.168.1.1:4444"
+      },
+      {
+        type: "step",
+        number: 12,
+        title: "Verify Configuration",
+        content: "Enter credentials and check the interfaces, addresses, policies, and everything needed for the store deployment.",
+        note: "Confirm all settings match the store's network plan before proceeding."
+      },
+      { type: "heading", text: "Shutdown" },
+      {
+        type: "step",
+        number: 13,
+        title: "Properly Shutdown Firewall",
+        content: "After everything is checked, properly shutdown the firewall by clicking Profile at the upper right corner.",
+        warning: "Do not disconnect power without properly shutting down. This can corrupt the configuration."
+      }
+    ]
+  },
+  {
+    type: "sop",
+    slug: "extreme-ap-setup",
+    title: "Extreme Access Point Setup",
+    description: "Physical setup, cloud onboarding, and verification procedure for Extreme Networks access points.",
+    steps: 9,
+    lastUpdated: "May 2026",
+    sections: [
+      { type: "heading", text: "Physical Setup" },
+      {
+        type: "step",
+        number: 1,
+        title: "Connect AP to Injector",
+        content: "Connect the Access Point to an AP Injector. The injector connects to a power outlet (making the LAN cable PoE) and to the WAN for internet access."
+      },
+      {
+        type: "step",
+        number: 2,
+        title: "Get the Serial Number",
+        content: "Locate and note the serial number printed on the bottom side of the Access Point."
+      },
+      { type: "heading", text: "Cloud Onboarding" },
+      {
+        type: "step",
+        number: 3,
+        title: "Login to ExtremeCloud IQ",
+        content: "Go to sso.extremeloudiq.com and log in with your credentials."
+      },
+      {
+        type: "step",
+        number: 4,
+        title: "Navigate to Classic Dashboard",
+        content: "On the upper right corner, click the grid icon (Apps), then click ExtremeCloud IQ (Classic)."
+      },
+      {
+        type: "step",
+        number: 5,
+        title: "Add Device",
+        content: "Click the + (Add) icon, then click Quick Add Devices, then select Manage your devices directly from the cloud."
+      },
+      {
+        type: "step",
+        number: 6,
+        title: "Enter Device Details",
+        content: "Input the serial number of the Access Point. CloudIQ Engine should be selected by default. Choose the store location and pick the policy type assigned to the store. Click Add Devices."
+      },
+      {
+        type: "step",
+        number: 7,
+        title: "Rename the Access Point",
+        content: "Input the serial number in the search bar to locate the AP. Check the box next to it, then click the Pen (Edit) icon. Change the Hostname using the naming format.",
+        code: "Format: [Store]_[Location]_[AP Number]\nExample: TL_SM_City_Sucat_AP1"
+      },
+      { type: "heading", text: "Verification" },
+      {
+        type: "step",
+        number: 8,
+        title: "Wait for Reboot and Update",
+        content: "Wait for the Access Point to reboot and complete its update. This may take several minutes."
+      },
+      {
+        type: "step",
+        number: 9,
+        title: "Confirm SSIDs",
+        content: "Open your WiFi settings. Once the store's SSIDs appear as available networks, the Access Point has been properly set up."
+      }
+    ]
   }
 ];
 
