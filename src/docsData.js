@@ -1,44 +1,45 @@
 export const sops = [
-  {
+    {
     type: "sop",
     slug: "store-opening-process",
-    title: "Store Opening Process (In Progress)",
-    description: "Complete end-to-end process for telco coordination, permitting, installation, and network deployment for new store openings.",
-    steps: 14,
+    title: "Store Opening Process",
+    description: "Complete end-to-end process for telco coordination, permitting, installation, network deployment, and device requesting for new store openings.",
+    steps: 18,
     lastUpdated: "May 2026",
     sections: [
       { type: "heading", text: "Pre-Mobilization: Coordination & Planning" },
       {
         type: "step",
         number: 1,
-        title: "Message DBFM for Project Manager Assignment",
-        content: "Message DBFM through Viber and ask who the Project Manager (PM) is for the assigned store."
+        title: "Request Project Manager Assignment",
+        content: "Message DBFM via Viber to ask who the Project Manager (PM) is for the assigned store."
       },
       {
         type: "step",
         number: 2,
         title: "Request Mobilization Date",
-        content: "Ask the PM for the mobilization date — the date when we can move with the contractor to begin site work."
+        content: "Ask the PM for the mobilization date — the date when we can move with the contractor to begin site work. This is also the date when the Telco or JAAS can start laying fiber.",
+        note: "Ask the PM for the contractor to prioritize the back office."
       },
       {
         type: "step",
         number: 3,
         title: "Confirm Telco Providers",
-        content: "Ask Sir George which telco providers are usable for the store and request updates regarding the telco application forms."
+        content: "Ask Sir George which telco providers are usable for the store, and request updates on the telco application forms. For site surveys, coordinate accordingly."
       },
       {
         type: "step",
         number: 4,
         title: "Understand Telco Responsibilities by Provider",
         content: "Different telco providers handle installation differently.",
-        note: "For Globe, Converge, and PhilCom — they usually install the connection from the NAP box/facility to the store. For PLDT, coordinate with Sir Mark of JAAS."
+        note: "Globe, Converge, PhilCom — They install the connection from the NAP box/facility to the store. PLDT — Coordinate with Sir Mark of JAAS."
       },
       { type: "heading", text: "Application & Approval" },
       {
         type: "step",
         number: 5,
         title: "Submit Application Form to Telco",
-        content: "Submit the application form to the telco provider. Once they confirm approval, they can proceed with the installation during the mobilization date provided by the PM."
+        content: "Submit the application form to the telco provider. Once they confirm approval, they may proceed with the installation during the mobilization date provided by the PM."
       },
       {
         type: "step",
@@ -50,7 +51,7 @@ export const sops = [
         type: "step",
         number: 7,
         title: "Telco Site Inspection & Layout Approval",
-        content: "The telco provider will conduct a site inspection, create a layout plan, and submit it to the admin. Once approved by the admin, they may proceed with the installation.",
+        content: "The telco provider will conduct a site inspection, create a layout plan, and submit it to the admin. Once approved, they may proceed with installation.",
         warning: "Do not proceed with installation until the admin has formally approved the layout plan."
       },
       { type: "heading", text: "Work Permits & Installation" },
@@ -65,45 +66,112 @@ export const sops = [
         type: "step",
         number: 9,
         title: "Schedule Activation & Process Second Work Permit",
-        content: "After the installation is completed, activation must be scheduled. Another work permit is required for activation, so coordinate again with the PM."
+        content: "After installation is completed, activation must be scheduled. Another work permit is required for activation — coordinate again with the PM."
       },
       {
         type: "step",
         number: 10,
         title: "Proceed with Network Deployment",
-        content: "After activation is complete, proceed with the deployment and mobilization of the network equipment.",
-        note: "Refer to the Network Device Setup guides for detailed equipment deployment steps."
+        content: "After activation is complete, proceed with the deployment and mobilization of network equipment."
       },
       { type: "heading", text: "PLDT-Specific Process" },
       {
         type: "step",
         number: 11,
-        title: "PLDT: Coordinate Layout Plan with Sir Mark",
-        content: "Once the PM provides the mobilization date, ask Sir Mark to prepare the layout plan for admin approval. Sir Mark will handle the submission. Coordinate through Viber with Sir Don or Sir Vince for updates."
+        title: "Coordinate Layout Plan & Site Survey with Sir Mark",
+        content: "Once the PM provides the mobilization date, ask Sir Mark to prepare the layout plan for admin approval — a work permit is needed. Sir Mark will handle the submission. For the site survey, ask both PLDT and JAAS to join."
       },
       {
         type: "step",
         number: 12,
-        title: "PLDT: Obtain Fiber Cable Before Installation",
-        content: "Before installation, obtain the fiber cable from PLDT. Ask Sir Mark for the layout measurements to determine the required fiber cable length for the site. This allows requesting the correct fiber length from PLDT to be installed by JAAS.",
+        title: "Request Work Permit",
+        content: "Request a work permit through the PM."
+      },
+      {
+        type: "step",
+        number: 13,
+        title: "Get Admin Contact Details",
+        content: "After the layout is submitted to the admin, ask Sir Mark for the admin's contact details."
+      },
+      {
+        type: "step",
+        number: 14,
+        title: "Schedule Installation After Layout Approval",
+        content: "Once the layout is approved, PLDT installation can be scheduled."
+      },
+      {
+        type: "step",
+        number: 15,
+        title: "Obtain Fiber Cable Before Installation",
+        content: "Before installation, obtain the fiber cable from PLDT. Ask Sir Mark for the layout measurements to determine the required fiber cable length. This allows requesting the correct fiber length from PLDT, to be installed by JAAS.",
         note: "Fiber installation should always have two lines for backup redundancy.",
         warning: "Ask Sir Mark if protective tubing or conduit can be installed for fiber cable protection."
       },
       {
         type: "step",
-        number: 13,
-        title: "PLDT: Schedule Installation & Request Activation",
-        content: "Once the layout is approved and fiber cable is obtained, PLDT installation can be scheduled. After installation, request activation from PLDT. Once activation is completed, proceed with network device setup."
+        number: 16,
+        title: "Request Activation from PLDT",
+        content: "After installation, request activation from PLDT. Once activation is completed, proceed with the setup of network devices."
       },
-      { type: "heading", text: "Provincial Site Deployments" },
+      { type: "heading", text: "Additional PLDT Coordination Notes" },
+      {
+        type: "list",
+        items: [
+          "After the admin endorses the application form to PLDT, ask Sir Mark to prepare the store layout.",
+          "Once the application form is received, the PLDT team will need a Service Order from their side before they can release the Fiber Optic Cable (FOC).",
+          "Coordinate via Viber and email with Sir Don or Sir Vince. For SM PLDT, contact Sir Carlo Dysangco via email and Viber for FOC requests.",
+          "Ask Sir Mark to create the layout plan for the site for admin approval.",
+          "Once the approved layout is returned to Sir Mark, schedule the installation.",
+          "Coordinate with PLDT via Viber regarding the fiber cable request so Sir Mark can mobilize."
+        ]
+      },
+      { type: "heading", text: "Requesting Network Devices" },
+      {
+        type: "list",
+        items: [
+          "Network devices for new stores — Ask Sir Poch.",
+          "Ticket creation — Notify SD to create a ticket for the network device request.",
+          "UPS (Metro Manila) — Ask Ms. Almira for the admin handling that specific store, then ask that admin for the UPS.",
+          "UPS (Provincial) — Ask the Branch Head for the UPS, as it will be brought by the warehouse during turnover."
+        ]
+      },
+      { type: "heading", text: "Provincial Site Process" },
       {
         type: "step",
-        number: 14,
-        title: "Process TRF for Provincial Travel",
-        content: "For provincial deployments, a Travel Request Form (TRF) must be requested from HR 5–7 days before the flight schedule.",
-        note: "Remind Sir Poch two weeks in advance so the TRF can be signed by Sir Phody. Sir Poch will submit the documents to HR. Your responsibility is to remind Sir Poch regarding the travel requirements.",
+        number: 17,
+        title: "Request TRF from HR",
+        content: "For provincial deployments, request a Travel Request Form (TRF) from HR 5–7 days before the flight schedule."
+      },
+      {
+        type: "step",
+        number: 18,
+        title: "Remind Sir Poch for TRF Signing",
+        content: "Remind Sir Poch two weeks in advance so the TRF can be signed by Sir Phody. Sir Poch will submit the documents to HR.",
+        note: "Your responsibility is to remind Sir Poch regarding travel requirements.",
         warning: "The TRF should be processed only once the telco activation schedule is already confirmed or ongoing. The same process applies for the second visit during the store opening."
-      }
+      },
+      { type: "heading", text: "Important Reminders" },
+      {
+        type: "list",
+        items: [
+          "Work permits must always be processed through the Project Manager. If the store has already been turned over, go through the Branch Head instead.",
+          "Fiber installation must always have two lines for backup redundancy.",
+          "Always request protective tubing or conduit for fiber cable protection.",
+          "TRF for provincial sites must be requested 5–7 days before the flight schedule.",
+          "Remind Sir Poch two weeks in advance for TRF processing."
+        ]
+      },
+      { type: "heading", text: "Key Contacts" },
+      { type: "paragraph", text: "DBFM — PM Assignment & Admin Contacts — Start of process" },
+      { type: "paragraph", text: "Sir George — Telco Provider Confirmation — Pre-mobilization" },
+      { type: "paragraph", text: "Sir Mark (JAAS) — PLDT Layout & Fiber Coordination — PLDT sites only" },
+      { type: "paragraph", text: "Ma'am Nina / Ma'am Daphne — Admin Contact Details — During application" },
+      { type: "paragraph", text: "Sir Poch — Network Devices & TRF Submission — New stores / Provincial sites" },
+      { type: "paragraph", text: "Sir Phody — TRF Signing — Provincial sites only" },
+      { type: "paragraph", text: "Sir Don / Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
+      { type: "paragraph", text: "Sir Carlo Dysangco — SM PLDT FOC Requests — SM PLDT sites only" },
+      { type: "paragraph", text: "Ms. Almira — UPS Admin Assignment — UPS requests (Metro Manila)" },
+      { type: "paragraph", text: "SD — Network Device Ticket — Device requests" }
     ]
   }
 ];
