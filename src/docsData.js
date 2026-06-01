@@ -180,7 +180,8 @@ export const sops = [
       { type: "paragraph", text: "Sir Don — PLDT Coordination (Viber & Email) — PLDT sites only" },
       { type: "paragraph", text: "Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
       { type: "paragraph", text: "Sir Carlo Dysangco — SM PLDT FOC Requests — SM PLDT sites only" },
-      { type: "paragraph", text: "Jim Mercader — Extension Wire Requests — Extension wires" },
+      { type: "paragraph", text: "Jim Mercader — PMC Extension Wire Requests — Extension wires" },
+      { type: "paragraph", text: "Jolina Mariano — The Loop Extension Wire Requests — Extension wires" },
       { type: "paragraph", text: "Ms. Sherlynn Ponferrada — UPS for Power Mac AAR — UPS Requests" },
       { type: "paragraph", text: "Mary Angelyn Estacio — UPS for The Loop — UPS Requests" },
       { type: "paragraph", text: "SD — Network Device Ticket — Device requests" }
