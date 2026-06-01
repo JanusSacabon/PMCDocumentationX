@@ -1,13 +1,13 @@
 export const sops = [
-    {
+  {
     type: "sop",
     slug: "store-opening-process",
-    title: "Store Opening Process",
-    description: "Complete end-to-end process for telco coordination, permitting, installation, network deployment, and device requesting for new store openings.",
+    title: "Standard Operating Procedure: Store Opening Process",
+    description: "Complete end-to-end process for telco coordination, permitting, installation, network deployment, and device requesting for all stores (Metro Manila & Provincial).",
     steps: 18,
-    lastUpdated: "May 2026",
+    lastUpdated: "June 2026",
     sections: [
-      { type: "heading", text: "Pre-Mobilization: Coordination & Planning" },
+      { type: "heading", text: "Phase 1: Pre-Mobilization — Coordination & Planning" },
       {
         type: "step",
         number: 1,
@@ -34,7 +34,7 @@ export const sops = [
         content: "Different telco providers handle installation differently.",
         note: "Globe, Converge, PhilCom — They install the connection from the NAP box/facility to the store. PLDT — Coordinate with Sir Mark of JAAS."
       },
-      { type: "heading", text: "Application & Approval" },
+      { type: "heading", text: "Phase 2: Application & Approval" },
       {
         type: "step",
         number: 5,
@@ -45,7 +45,7 @@ export const sops = [
         type: "step",
         number: 6,
         title: "Request Admin Contact Details",
-        content: "Request the admin contact details from DBFM — coordinate with Ma'am Nina or Ma'am Daphne."
+        content: "Request the admin contact details from DBFM. Coordinate with Ma'am Nina or Ma'am Daphne."
       },
       {
         type: "step",
@@ -54,7 +54,7 @@ export const sops = [
         content: "The telco provider will conduct a site inspection, create a layout plan, and submit it to the admin. Once approved, they may proceed with installation.",
         warning: "Do not proceed with installation until the admin has formally approved the layout plan."
       },
-      { type: "heading", text: "Work Permits & Installation" },
+      { type: "heading", text: "Phase 3: Work Permits & Installation" },
       {
         type: "step",
         number: 8,
@@ -74,7 +74,7 @@ export const sops = [
         title: "Proceed with Network Deployment",
         content: "After activation is complete, proceed with the deployment and mobilization of network equipment."
       },
-      { type: "heading", text: "PLDT-Specific Process" },
+      { type: "heading", text: "Phase 4: PLDT-Specific Process" },
       {
         type: "step",
         number: 11,
@@ -113,29 +113,32 @@ export const sops = [
         title: "Request Activation from PLDT",
         content: "After installation, request activation from PLDT. Once activation is completed, proceed with the setup of network devices."
       },
-      { type: "heading", text: "Additional PLDT Coordination Notes" },
+      { type: "heading", text: "Phase 5: Additional PLDT Coordination Notes" },
       {
         type: "list",
         items: [
           "After the admin endorses the application form to PLDT, ask Sir Mark to prepare the store layout.",
           "Once the application form is received, the PLDT team will need a Service Order from their side before they can release the Fiber Optic Cable (FOC).",
-          "Coordinate via Viber and email with Sir Don or Sir Vince. For SM PLDT, contact Sir Carlo Dysangco via email and Viber for FOC requests.",
+          "Coordinate via Viber and email with Sir Don or Sir Vince.",
+          "For SM PLDT, contact Sir Carlo Dysangco via email and Viber for FOC requests.",
           "Ask Sir Mark to create the layout plan for the site for admin approval.",
           "Once the approved layout is returned to Sir Mark, schedule the installation.",
           "Coordinate with PLDT via Viber regarding the fiber cable request so Sir Mark can mobilize."
         ]
       },
-      { type: "heading", text: "Requesting Network Devices" },
+      { type: "heading", text: "Phase 6: Requesting Network Devices" },
       {
         type: "list",
         items: [
           "Network devices for new stores — Ask Sir Poch.",
           "Ticket creation — Notify SD to create a ticket for the network device request.",
-          "UPS (Metro Manila) — Ask Ms. Almira for the admin handling that specific store, then ask that admin for the UPS.",
+          "Extension wires — Ask Jim Mercader.",
+          "UPS (Power Mac AAR — Metro Manila) — Ask Ms. Sherlynn Ponferrada.",
+          "UPS (The Loop) — Ask Mary Angelyn Estacio.",
           "UPS (Provincial) — Ask the Branch Head for the UPS, as it will be brought by the warehouse during turnover."
         ]
       },
-      { type: "heading", text: "Provincial Site Process" },
+      { type: "heading", text: "Phase 7: Provincial Site Process" },
       {
         type: "step",
         number: 17,
@@ -161,16 +164,25 @@ export const sops = [
           "Remind Sir Poch two weeks in advance for TRF processing."
         ]
       },
+      { type: "heading", text: "Organizational Structure" },
+      { type: "paragraph", text: "BD — Builds and Designs (Leasing usually handles ocular and space-related questions): Manager — Ma'am Nina; Supervisor (PMC) — Ma'am Daphne Moontoon; Supervisor (The Loop) — Ma'am Anna Grace Panelo" },
+      { type: "paragraph", text: "DB — Design and Builds (Project managers, designers, project handlers): Manager — Ma'am Camille; Supervisor (PMC) — Sir Edison San Diego; Supervisor (The Loop) — Sir Christian" },
+      { type: "paragraph", text: "Project Managers: PMC — Cole Palad; PMC — Carlo Comandao; The Loop — Aira Ibanez" },
+      { type: "paragraph", text: "Contractors: Magdamo — Mindanao area; 3LR — All-around Luzon, VisMin; R2L — All-around Luzon, VisMin; DM Casteel — Luzon; Infinite Options — Luzon" },
       { type: "heading", text: "Key Contacts" },
       { type: "paragraph", text: "DBFM — PM Assignment & Admin Contacts — Start of process" },
       { type: "paragraph", text: "Sir George — Telco Provider Confirmation — Pre-mobilization" },
       { type: "paragraph", text: "Sir Mark (JAAS) — PLDT Layout & Fiber Coordination — PLDT sites only" },
-      { type: "paragraph", text: "Ma'am Nina / Ma'am Daphne — Admin Contact Details — During application" },
+      { type: "paragraph", text: "Ma'am Nina — Admin Contact Details — During application" },
+      { type: "paragraph", text: "Ma'am Daphne — Admin Contact Details — During application" },
       { type: "paragraph", text: "Sir Poch — Network Devices & TRF Submission — New stores / Provincial sites" },
       { type: "paragraph", text: "Sir Phody — TRF Signing — Provincial sites only" },
-      { type: "paragraph", text: "Sir Don / Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
+      { type: "paragraph", text: "Sir Don — PLDT Coordination (Viber & Email) — PLDT sites only" },
+      { type: "paragraph", text: "Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
       { type: "paragraph", text: "Sir Carlo Dysangco — SM PLDT FOC Requests — SM PLDT sites only" },
-      { type: "paragraph", text: "Ms. Almira — UPS Admin Assignment — UPS requests (Metro Manila)" },
+      { type: "paragraph", text: "Jim Mercader — Extension Wire Requests — Extension wires" },
+      { type: "paragraph", text: "Ms. Sherlynn Ponferrada — UPS for Power Mac AAR — UPS Requests" },
+      { type: "paragraph", text: "Mary Angelyn Estacio — UPS for The Loop — UPS Requests" },
       { type: "paragraph", text: "SD — Network Device Ticket — Device requests" }
     ]
   }
