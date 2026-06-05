@@ -169,53 +169,225 @@ export const sops = [
   },
   {
     type: "sop",
-        slug: "org-structure-contacts",
+    slug: "org-structure-contacts",
     title: "Organizational Structure & Key Contacts",
     description: "Reference document for Business Development, Design and Builds, project managers, contractors, and key contacts for store openings.",
+    steps: 0,
     lastUpdated: "June 2026",
     sections: [
       { type: "heading", text: "BD — Business Development" },
       { type: "paragraph", text: "Leasing usually handles ocular and space-related questions." },
-      { type: "paragraph", text: "Manager — Ma'am Nina" },
-      { type: "paragraph", text: "Supervisor (PMC) — Ma'am Daphne Moontoon" },
-      { type: "paragraph", text: "Supervisor (The Loop) — Ma'am Anna Grace Panelo" },
-      { type: "note", text: "For ocular visits (The Loop), contact Ms. AG Panelo." },
+      {
+        type: "contact-card",
+        name: "Ma'am Nina",
+        role: "Manager",
+        category: "BD"
+      },
+      {
+        type: "contact-card",
+        name: "Ma'am Daphne Moontoon",
+        role: "Supervisor (PMC)",
+        category: "BD"
+      },
+      {
+        type: "contact-card",
+        name: "Ma'am Anna Grace Panelo",
+        role: "Supervisor (The Loop)",
+        category: "BD"
+      },
+      {
+        type: "contact-card",
+        name: "Ms. AG Panelo",
+        role: "Ocular Visits (The Loop)",
+        category: "BD",
+        note: "For site surveys and ocular visits"
+      },
       { type: "heading", text: "DB — Design and Builds" },
       { type: "paragraph", text: "Project managers, designers, project handlers." },
-      { type: "paragraph", text: "Manager — Ma'am Camille" },
-      { type: "paragraph", text: "Supervisor (PMC) — Sir Edison San Diego" },
-      { type: "paragraph", text: "Supervisor (The Loop) — Sir Christian" },
+      {
+        type: "contact-card",
+        name: "Ma'am Camille",
+        role: "Manager",
+        category: "DB"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Edison San Diego",
+        role: "Supervisor (PMC)",
+        category: "DB"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Christian",
+        role: "Supervisor (The Loop)",
+        category: "DB"
+      },
       { type: "heading", text: "Project Managers" },
-      { type: "paragraph", text: "PMC — Cole Palad" },
-      { type: "paragraph", text: "PMC — Carlo Comandao" },
-      { type: "paragraph", text: "The Loop — Aira Ibanez" },
+      {
+        type: "contact-card",
+        name: "Cole Palad",
+        role: "Project Manager — PMC",
+        category: "PM"
+      },
+      {
+        type: "contact-card",
+        name: "Carlo Comandao",
+        role: "Project Manager — PMC",
+        category: "PM"
+      },
+      {
+        type: "contact-card",
+        name: "Aira Ibanez",
+        role: "Project Manager — The Loop",
+        category: "PM"
+      },
       { type: "heading", text: "Contractors" },
-      { type: "paragraph", text: "Magdamo — Mindanao area" },
-      { type: "paragraph", text: "3LR — All-around Luzon, VisMin" },
-      { type: "paragraph", text: "R2L — All-around Luzon, VisMin" },
-      { type: "paragraph", text: "DM Casteel — Luzon" },
-      { type: "paragraph", text: "Infinite Options — Luzon" },
+      {
+        type: "contact-card",
+        name: "Magdamo",
+        role: "Mindanao area",
+        category: "Contractor"
+      },
+      {
+        type: "contact-card",
+        name: "3LR",
+        role: "All-around Luzon, VisMin",
+        category: "Contractor"
+      },
+      {
+        type: "contact-card",
+        name: "R2L",
+        role: "All-around Luzon, VisMin",
+        category: "Contractor"
+      },
+      {
+        type: "contact-card",
+        name: "DM Casteel",
+        role: "Luzon",
+        category: "Contractor"
+      },
+      {
+        type: "contact-card",
+        name: "Infinite Options",
+        role: "Luzon",
+        category: "Contractor"
+      },
       { type: "heading", text: "Key Contacts — General Coordination" },
-      { type: "paragraph", text: "DBFM — PM Assignment & Admin Contacts — Start of process" },
-      { type: "paragraph", text: "Sir George — Telco Provider Confirmation — Pre-mobilization" },
-      { type: "paragraph", text: "Ma'am Nina — Admin Contact Details — During application" },
-      { type: "paragraph", text: "Ma'am Daphne — Admin Contact Details — During application" },
-      { type: "paragraph", text: "Ms. AG Panelo — Ocular Visits (The Loop) — Site surveys / Ocular" },
-      { type: "paragraph", text: "Sir Poch — Network Devices & TRF Submission — New stores / Provincial sites" },
-      { type: "paragraph", text: "Sir Phody — TRF Signing — Provincial sites only" },
-      { type: "paragraph", text: "SD — Network Device Ticket — Device requests" },
+      {
+        type: "contact-card",
+        name: "DBFM",
+        role: "PM Assignment & Admin Contacts",
+        category: "General",
+        note: "Start of process"
+      },
+      {
+        type: "contact-card",
+        name: "Sir George",
+        role: "Telco Provider Confirmation",
+        category: "General",
+        note: "Pre-mobilization"
+      },
+      {
+        type: "contact-card",
+        name: "Ma'am Nina",
+        role: "Admin Contact Details",
+        category: "General",
+        note: "During application"
+      },
+      {
+        type: "contact-card",
+        name: "Ma'am Daphne",
+        role: "Admin Contact Details",
+        category: "General",
+        note: "During application"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Poch",
+        role: "Network Devices & TRF Submission",
+        category: "General",
+        note: "New stores / Provincial sites"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Phody",
+        role: "TRF Signing",
+        category: "General",
+        note: "Provincial sites only"
+      },
+      {
+        type: "contact-card",
+        name: "SD",
+        role: "Network Device Ticket",
+        category: "General",
+        note: "Device requests"
+      },
       { type: "heading", text: "Key Contacts — PLDT-Specific" },
-      { type: "paragraph", text: "Sir Mark (JAAS) — PLDT Layout & Fiber Coordination — PLDT sites only" },
-      { type: "paragraph", text: "Sir Don — PLDT Coordination (Viber & Email) — PLDT sites only" },
-      { type: "paragraph", text: "Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
-      { type: "paragraph", text: "Sir Carlo Dysangco — SM PLDT FOC Requests — SM PLDT sites only" },
+      {
+        type: "contact-card",
+        name: "Sir Mark (JAAS)",
+        role: "PLDT Layout & Fiber Coordination",
+        category: "PLDT",
+        note: "PLDT sites only"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Don",
+        role: "PLDT Coordination (Viber & Email)",
+        category: "PLDT",
+        note: "PLDT sites only"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Vince",
+        role: "PLDT Coordination (Viber & Email)",
+        category: "PLDT",
+        note: "PLDT sites only"
+      },
+      {
+        type: "contact-card",
+        name: "Sir Carlo Dysangco",
+        role: "SM PLDT FOC Requests",
+        category: "PLDT",
+        note: "SM PLDT sites only"
+      },
       { type: "heading", text: "Key Contacts — Other Telco" },
-      { type: "paragraph", text: "Sir Adrian — SM PhilCom Contact — SM PhilCom sites only" },
+      {
+        type: "contact-card",
+        name: "Sir Adrian",
+        role: "SM PhilCom Contact",
+        category: "Telco",
+        note: "SM PhilCom sites only"
+      },
       { type: "heading", text: "Key Contacts — Device & Peripheral Requests" },
-      { type: "paragraph", text: "Jim Mercader — Extension Wire Requests (PMC) — Extension wires" },
-      { type: "paragraph", text: "Jolina Mariano — Extension Wire Requests (The Loop) — Extension wires" },
-      { type: "paragraph", text: "Ms. Sherlynn Ponferrada — UPS for Power Mac AAR — UPS Requests" },
-      { type: "paragraph", text: "Mary Angelyn Estacio — UPS for The Loop — UPS Requests" }
+      {
+        type: "contact-card",
+        name: "Jim Mercader",
+        role: "Extension Wire Requests (PMC)",
+        category: "Devices",
+        note: "Extension wires"
+      },
+      {
+        type: "contact-card",
+        name: "Jolina Mariano",
+        role: "Extension Wire Requests (The Loop)",
+        category: "Devices",
+        note: "Extension wires"
+      },
+      {
+        type: "contact-card",
+        name: "Ms. Sherlynn Ponferrada",
+        role: "UPS for Power Mac AAR",
+        category: "Devices",
+        note: "UPS Requests"
+      },
+      {
+        type: "contact-card",
+        name: "Mary Angelyn Estacio",
+        role: "UPS for The Loop",
+        category: "Devices",
+        note: "UPS Requests"
+      }
     ]
   }
 ];
