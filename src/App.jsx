@@ -252,6 +252,18 @@ function renderSOP(doc) {
         html += `<div class="sop-note">💡 ${section.text}</div>`;
       } else if (section.type === "warning") {
         html += `<div class="sop-warning">⚠️ ${section.text}</div>`;
+      } else if (section.type === "contact-card") {
+        html += `
+          <div class="contact-card">
+            <div class="contact-card-avatar">
+              <span>${section.name.charAt(0)}</span>
+            </div>
+            <div class="contact-card-body">
+              <span class="contact-card-name">${section.name}</span>
+              <span class="contact-card-role">${section.role}</span>
+              ${section.note ? `<span class="contact-card-note">${section.note}</span>` : ""}
+            </div>
+          </div>`;
       }
       return html;
     })
@@ -681,6 +693,69 @@ h1, h2, h3, h4 { font-family: var(--ff-head); letter-spacing: -0.025em; }
   background: linear-gradient(135deg, var(--mint-800), var(--mint-700));
   box-shadow: 0 6px 22px rgba(15,118,110,0.36);
 }
+
+/* Contact Cards */
+.contact-card {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  margin-bottom: 0.5rem;
+}
+.contact-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(15,118,110,0.22);
+}
+.contact-card-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--mint-700), var(--mint-600));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(15,118,110,0.24);
+}
+.contact-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.contact-card-name {
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+.contact-card-role {
+  font-size: 0.78rem;
+  color: var(--mint-700);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.contact-card-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.05rem;
+}
+
+/* Footer */
+.footer {
 
 /* Footer */
 .footer {
