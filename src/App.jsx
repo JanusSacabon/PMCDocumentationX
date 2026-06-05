@@ -350,9 +350,8 @@ export default function App() {
           <DocViewer item={currentItem} allItems={allItems} />
         </main>
       </div>
-
       {/* Footer */}
-      <footer className="footer">
+      <footer className="container footer">
         <p className="footer-name">Power Mac Center — Network Team</p>
         <p>Documentation Repository · SOPs & Templates</p>
       </footer>
