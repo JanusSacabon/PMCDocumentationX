@@ -1,7 +1,7 @@
 export const sops = [
   {
     type: "sop",
-    slug: "store-opening-process",
+       slug: "store-opening-process",
     title: "Standard Operating Procedure: Store Opening Process",
     description: "Complete end-to-end process for telco coordination, permitting, installation, network deployment, and device requesting for all stores (Metro Manila & Provincial).",
     steps: 18,
@@ -132,7 +132,8 @@ export const sops = [
         items: [
           "Network devices for new stores — Ask Sir Poch.",
           "Ticket creation — Notify SD to create a ticket for the network device request.",
-          "Extension wires — Ask Jim Mercader.",
+          "Extension wires (PMC) — Ask Jim Mercader.",
+          "Extension wires (The Loop) — Ask Jolina Mariano.",
           "UPS (Power Mac AAR — Metro Manila) — Ask Ms. Sherlynn Ponferrada.",
           "UPS (The Loop) — Ask Mary Angelyn Estacio.",
           "UPS (Provincial) — Ask the Branch Head for the UPS, as it will be brought by the warehouse during turnover."
@@ -163,12 +164,38 @@ export const sops = [
           "TRF for provincial sites must be requested 5–7 days before the flight schedule.",
           "Remind Sir Poch two weeks in advance for TRF processing."
         ]
-      },
+      }
+    ]
+  },
+  {
+    type: "sop",
+    slug: "org-structure-contacts",
+    title: "Organizational Structure & Key Contacts",
+    description: "Reference document for BD/DB organizational structure, project managers, contractors, and key contacts for store openings.",
+    steps: 0,
+    lastUpdated: "June 2026",
+    sections: [
       { type: "heading", text: "Organizational Structure" },
-      { type: "paragraph", text: "BD — Builds and Designs (Leasing usually handles ocular and space-related questions): Manager — Ma'am Nina; Supervisor (PMC) — Ma'am Daphne Moontoon; Supervisor (The Loop) — Ma'am Anna Grace Panelo" },
-      { type: "paragraph", text: "DB — Design and Builds (Project managers, designers, project handlers): Manager — Ma'am Camille; Supervisor (PMC) — Sir Edison San Diego; Supervisor (The Loop) — Sir Christian" },
-      { type: "paragraph", text: "Project Managers: PMC — Cole Palad; PMC — Carlo Comandao; The Loop — Aira Ibanez" },
-      { type: "paragraph", text: "Contractors: Magdamo — Mindanao area; 3LR — All-around Luzon, VisMin; R2L — All-around Luzon, VisMin; DM Casteel — Luzon; Infinite Options — Luzon" },
+      { type: "heading", text: "BD — Builds and Designs" },
+      { type: "paragraph", text: "Leasing usually handles ocular and space-related questions." },
+      { type: "paragraph", text: "Manager — Ma'am Nina" },
+      { type: "paragraph", text: "Supervisor (PMC) — Ma'am Daphne Moontoon" },
+      { type: "paragraph", text: "Supervisor (The Loop) — Ma'am Anna Grace Panelo" },
+      { type: "heading", text: "DB — Design and Builds" },
+      { type: "paragraph", text: "Project managers, designers, project handlers." },
+      { type: "paragraph", text: "Manager — Ma'am Camille" },
+      { type: "paragraph", text: "Supervisor (PMC) — Sir Edison San Diego" },
+      { type: "paragraph", text: "Supervisor (The Loop) — Sir Christian" },
+      { type: "heading", text: "Project Managers" },
+      { type: "paragraph", text: "PMC — Cole Palad" },
+      { type: "paragraph", text: "PMC — Carlo Comandao" },
+      { type: "paragraph", text: "The Loop — Aira Ibanez" },
+      { type: "heading", text: "Contractors" },
+      { type: "paragraph", text: "Magdamo — Mindanao area" },
+      { type: "paragraph", text: "3LR — All-around Luzon, VisMin" },
+      { type: "paragraph", text: "R2L — All-around Luzon, VisMin" },
+      { type: "paragraph", text: "DM Casteel — Luzon" },
+      { type: "paragraph", text: "Infinite Options — Luzon" },
       { type: "heading", text: "Key Contacts" },
       { type: "paragraph", text: "DBFM — PM Assignment & Admin Contacts — Start of process" },
       { type: "paragraph", text: "Sir George — Telco Provider Confirmation — Pre-mobilization" },
@@ -180,8 +207,9 @@ export const sops = [
       { type: "paragraph", text: "Sir Don — PLDT Coordination (Viber & Email) — PLDT sites only" },
       { type: "paragraph", text: "Sir Vince — PLDT Coordination (Viber & Email) — PLDT sites only" },
       { type: "paragraph", text: "Sir Carlo Dysangco — SM PLDT FOC Requests — SM PLDT sites only" },
-      { type: "paragraph", text: "Jim Mercader — PMC Extension Wire Requests — Extension wires" },
-      { type: "paragraph", text: "Jolina Mariano — The Loop Extension Wire Requests — Extension wires" },
+      { type: "paragraph", text: "Sir Adrian — SM PhilCom Contact — SM PhilCom sites only" },
+      { type: "paragraph", text: "Jim Mercader — Extension Wire Requests (PMC) — Extension wires" },
+      { type: "paragraph", text: "Jolina Mariano — Extension Wire Requests (The Loop) — Extension wires" },
       { type: "paragraph", text: "Ms. Sherlynn Ponferrada — UPS for Power Mac AAR — UPS Requests" },
       { type: "paragraph", text: "Mary Angelyn Estacio — UPS for The Loop — UPS Requests" },
       { type: "paragraph", text: "SD — Network Device Ticket — Device requests" }
