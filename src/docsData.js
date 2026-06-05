@@ -172,7 +172,6 @@ export const sops = [
     slug: "org-structure-contacts",
     title: "Organizational Structure & Key Contacts",
     description: "Reference document for BD/DB organizational structure, project managers, contractors, and key contacts for store openings.",
-    steps: 0,
     lastUpdated: "June 2026",
     sections: [
       { type: "heading", text: "Organizational Structure" },
