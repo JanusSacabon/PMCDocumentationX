@@ -609,7 +609,7 @@ export const deviceSetups = [
         type: "step",
         number: 6,
         title: "Enter Device Details",
-        content: "Input the serial number of the Access Point. CloudIQ Engine should be selected by default. Choose the store location and pick the policy type assigned to the store. Click Add Devices. For PMC choose "PMC_RBT_Policy", for The Loop choose "The_Loop_Policy"."
+        content: "Input the serial number of the Access Point. CloudIQ Engine should be selected by default. Choose the store location and pick the policy type assigned to the store. Click Add Devices. For PMC choose "PMC_RBT_Policy" and "The_Loop_Policy" for The Loop. 
       },
       {
         type: "step",
