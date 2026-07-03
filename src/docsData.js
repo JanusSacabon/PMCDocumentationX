@@ -354,9 +354,10 @@ export const templates = [
       { type: "step", number: 3, title: "Verify the Policy Syntax", content: "Check for typos or syntax errors before applying.", code: "check policy block_mgmt", note: "Expected: \"Policy file check successful.\"" },
       { type: "step", number: 4, title: "Apply Policy to VLANs (AAR)", content: "Apply the block_mgmt policy to ingress traffic on AAR VLANs.", code: "configure access-list block_mgmt vlan PCustomer ingress\nconfigure access-list block_mgmt vlan PDemo ingress\nconfigure access-list block_mgmt vlan PEmployee ingress\nconfigure access-list block_mgmt vlan Extranet ingress" },
       { type: "step", number: 5, title: "Apply Policy to VLANs (The Loop)", content: "Apply the block_mgmt policy to ingress traffic on The Loop VLAN.", code: "configure access-list block_mgmt vlan The_Loop ingress" },
+      { type: "step", number: 6, title: "Apply Policy to VLANs (AASP)", content: "Apply the block_mgmt policy to ingress traffic on AASP VLANs.", code: "configure access-list block_mgmt vlan AASP_E ingress\nconfigure access-list block_mgmt vlan The_Loop ingress\nconfigure access-list block_mgmt vlan TL_PMCF ingress" },
       { type: "heading", text: "Verify & Save" },
-      { type: "step", number: 6, title: "Verify Application & Counters", content: "Check ACL counters to confirm the policy is active and blocking traffic.", code: "show access-list counter vlan PCustomer ingress", note: "Replace PCustomer with other VLAN names as needed." },
-      { type: "step", number: 7, title: "Save Configuration", content: "Save the running configuration so changes persist after reboot.", code: "save", note: "Press y (Yes) when prompted." }
+      { type: "step", number: 7, title: "Verify Application & Counters", content: "Check ACL counters to confirm the policy is active and blocking traffic.", code: "show access-list counter vlan PCustomer ingress", note: "Replace PCustomer with other VLAN names as needed." },
+      { type: "step", number: 8, title: "Save Configuration", content: "Save the running configuration so changes persist after reboot.", code: "save", note: "Press y (Yes) when prompted." }
     ]
   }
 ];
