@@ -285,7 +285,7 @@ export const deviceSetups = [
       { type: "step", number: 3, title: "Login to ExtremeCloud IQ", content: "Go to sso.extremeloudiq.com and log in with your credentials." },
       { type: "step", number: 4, title: "Navigate to Classic Dashboard", content: "On the upper right corner, click the grid icon (Apps), then click ExtremeCloud IQ (Classic)." },
       { type: "step", number: 5, title: "Add Device", content: "Click the + (Add) icon, then click Quick Add Devices, then select Manage your devices directly from the cloud." },
-      { type: "step", number: 6, title: "Enter Device Details", content: "Input the serial number of the Access Point. CloudIQ Engine should be selected by default. Choose the store location and pick the policy type assigned to the store. Click Add Devices." },
+      { type: "step", number: 6, title: "Enter Device Details", content: "Input the serial number of the Access Point. CloudIQ Engine should be selected by default. Choose the store location and pick the policy type assigned to the store. Click Add Devices.", note: "For PMC choose PMC_RBT_Policy and The_Loop_Policy for The Loop." },
       { type: "step", number: 7, title: "Rename the Access Point", content: "Input the serial number in the search bar to locate the AP. Check the box next to it, then click the Pen (Edit) icon. Change the Hostname using the naming format.", code: "Format: [Store]_[Location]_[AP Number]\nExample: TL_SM_City_Sucat_AP1" },
       { type: "heading", text: "Verification" },
       { type: "step", number: 8, title: "Wait for Reboot and Update", content: "Wait for the Access Point to reboot and complete its update. This may take several minutes." },
@@ -313,7 +313,7 @@ export const templates = [
       { type: "step", number: 5, title: "Create VLAN TL_PMCF (Tag 133)", content: "Create and configure the PMCF VLAN.", code: "cre vlan tl_pmcf tag 133\nconf \"tl_pmcf\" ipaddress 192.168.1.3/24\nconf \"tl_pmcf\" add po 1,3-20" },
       { type: "step", number: 6, title: "Create VLAN The_Loop (Tag 134)", content: "Create and configure The Loop VLAN with AP tagging.", code: "cre vlan The_Loop tag 134\nconf vlan \"The_Loop\" ipaddress 192.168.2.3/24\nconf \"The_Loop\" add por 9-11 t\nconf \"The_Loop\" add por 2,21-24" },
       { type: "heading", text: "Accounts & SNMP" },
-      { type: "step", number: 7, title: "Create Accounts", content: "Set up admin, user, and individual accounts.", code: "Config account admin password\nNSP@ssword2026!\n\nConfig account user password\nNSUs3r2026!\n\nCreate Account User GianKarlo\nGKRamos@2025" },
+      { type: "step", number: 7, title: "Create Accounts", content: "Set up admin, user, and individual accounts.", code: "Config account admin password\n******\n\nConfig account user password\n******\n\nCreate Account User GianKarlo\n******" },
       { type: "step", number: 8, title: "Set SNMP System Name", content: "Configure the SNMP system name for the switch.", code: "conf snmp sysName <switch-name>" },
       { type: "heading", text: "Save" },
       { type: "step", number: 9, title: "Save Configuration", content: "Save all changes to the switch.", code: "save\nYes" }
@@ -322,21 +322,23 @@ export const templates = [
   {
     type: "template",
     slug: "rbt-switch-config",
-    title: "RBT Switch Configuration",
-    description: "Extreme Networks switch configuration for RBT store. Includes VLANs for PCustomer, PEmployee, PMCF, and PDemo with AP tagging.",
-    lastUpdated: "May 2026",
+    title: "RBT (AAR) Switch Configuration",
+    description: "Extreme Networks switch configuration for RBT/AAR stores. Includes VLANs for PCustomer, PEmployee, PMCF, PDemo, and EXTRANET with AP tagging.",
+    lastUpdated: "June 2026",
     sections: [
       { type: "heading", text: "Reset & Port Configuration" },
-      { type: "step", number: 1, title: "Delete All Port Configurations", content: "Clear all existing port configurations.", code: "configure default delete ports all" },
-      { type: "step", number: 2, title: "Set Port Display Strings", content: "Label all ports for firewalls and access points.", code: "configure ports 1 display-string \"FW-PMCF\"\nconfigure ports 2 display-string \"FW-PDemo\"\nconfigure ports 3 display-string \"FW-PCustomer\"\nconfigure ports 4 display-string \"FW-PEmployee\"\nconfigure ports 9 display-string \"AP1\"\nconfigure ports 10 display-string \"AP2\"\nconfigure ports 11 display-string \"AP3\"" },
+      { type: "step", number: 1, title: "Unconfigure Switch Completely", content: "Factory reset the switch before starting fresh.", code: "unconfigure switch all", warning: "This erases all existing configuration." },
+      { type: "step", number: 2, title: "Delete All Port Configurations", content: "Clear all existing port configurations.", code: "configure default delete ports all" },
+      { type: "step", number: 3, title: "Set Port Display Strings", content: "Label all ports for firewalls and access points.", code: "configure ports 1 display-string \"FW-PMCF\"\nconfigure ports 2 display-string \"FW-PDemo\"\nconfigure ports 3 display-string \"FW-PCustomer\"\nconfigure ports 4 display-string \"FW-PEmployee\"\nconfigure ports 9 display-string \"AP1\"\nconfigure ports 10 display-string \"AP2\"\nconfigure ports 11 display-string \"AP3\"" },
       { type: "heading", text: "VLAN Configuration" },
-      { type: "step", number: 3, title: "Create VLAN PCustomer (Tag 140)", content: "Customer VLAN with AP tagging.", code: "create vlan \"PCustomer\" tag 140\nconfigure vlan \"PCustomer\" ipaddress 192.168.3.3/24\nconfigure vlan \"PCustomer\" add ports 3\nconfigure vlan \"PCustomer\" add ports 9-11 tagged" },
-      { type: "step", number: 4, title: "Create VLAN PEmployee (Tag 150)", content: "Employee VLAN with AP tagging.", code: "create vlan \"PEmployee\" tag 150\nconfigure vlan \"PEmployee\" ipaddress 192.168.4.3/24\nconfigure vlan \"PEmployee\" add ports 4\nconfigure vlan \"PEmployee\" add ports 9-11 tagged" },
-      { type: "step", number: 5, title: "Create VLAN PMCF (Tag 151)", content: "PMCF VLAN for corporate access.", code: "create vlan \"PMCF\" tag 151\nconfigure vlan \"PMCF\" ipaddress 192.168.1.3/24\nconfigure vlan \"PMCF\" add ports 1, 5-19, 20" },
-      { type: "step", number: 6, title: "Create VLAN PDemo (Tag 130)", content: "Demo VLAN with AP tagging.", code: "create vlan \"PDemo\" tag 130\nconfigure vlan \"PDemo\" ipaddress 192.168.2.3/24\nconfigure vlan \"PDemo\" add ports 9-11 tagged\nconfigure vlan \"PDemo\" add ports 2, 21-24" },
+      { type: "step", number: 4, title: "Create VLAN PCustomer (Tag 140)", content: "Customer VLAN with AP tagging.", code: "create vlan \"PCustomer\" tag 140\nconfigure vlan \"PCustomer\" ipaddress 192.168.3.3/24\nconfigure vlan \"PCustomer\" add ports 3\nconfigure vlan \"PCustomer\" add ports 9-11 tagged" },
+      { type: "step", number: 5, title: "Create VLAN PEmployee (Tag 150)", content: "Employee VLAN with AP tagging.", code: "create vlan \"PEmployee\" tag 150\nconfigure vlan \"PEmployee\" ipaddress 192.168.4.3/24\nconfigure vlan \"PEmployee\" add ports 4\nconfigure vlan \"PEmployee\" add ports 9-11 tagged" },
+      { type: "step", number: 6, title: "Create VLAN PMCF (Tag 151)", content: "PMCF VLAN for corporate access.", code: "create vlan \"PMCF\" tag 151\nconfigure vlan \"PMCF\" ipaddress 192.168.1.3/24\nconfigure vlan \"PMCF\" add ports 1, 6-20" },
+      { type: "step", number: 7, title: "Create VLAN PDemo (Tag 130)", content: "Demo VLAN with AP tagging.", code: "create vlan \"PDemo\" tag 130\nconfigure vlan \"PDemo\" ipaddress 192.168.2.3/24\nconfigure vlan \"PDemo\" add ports 9-11 tagged\nconfigure vlan \"PDemo\" add ports 2, 21-22, 24" },
+      { type: "step", number: 8, title: "Create VLAN EXTRANET (Tag 100)", content: "EXTRANET VLAN — needs loopback IP for IP address.", code: "create vlan \"EXTRANET\" tag 100\nconfigure vlan \"EXTRANET\" ipaddress 10.x.x.3/24\nconfigure vlan \"EXTRANET\" add ports 5, 23", note: "Replace 10.x.x.3 with the assigned loopback IP." },
       { type: "heading", text: "SNMP & Save" },
-      { type: "step", number: 7, title: "Set SNMP System Name", content: "Configure the SNMP system name.", code: "configure snmp sysname \"Switch-System\"" },
-      { type: "step", number: 8, title: "Save Configuration", content: "Save all changes to the switch.", code: "save\ny" }
+      { type: "step", number: 9, title: "Set SNMP System Name", content: "Configure the SNMP system name. Use store name and switch number.", code: "configure snmp sysname \"Name\"", note: "Example: Rob_Metro_East_SW1" },
+      { type: "step", number: 10, title: "Save Configuration", content: "Save all changes to the switch.", code: "save\ny" }
     ]
   },
   {
