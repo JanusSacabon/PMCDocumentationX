@@ -632,6 +632,63 @@ export const deviceSetups = [
         content: "Open your WiFi settings. Once the store's SSIDs appear as available networks, the Access Point has been properly set up."
       }
     ]
+  },
+  {
+    type: "device",
+    slug: "blocking-ssh-telnet-exos",
+    title: "Blocking SSH and Telnet in EXOS",
+    description: "Step-by-step guide to create and apply a policy file that blocks SSH and Telnet traffic on ExtremeXOS switches.",
+    steps: 6,
+    lastUpdated: "July 2026",
+    sections: [
+      {
+        type: "step",
+        number: 1,
+        title: "Create or Edit the Policy File",
+        content: "Type the following command in the switch CLI to open the built-in EXOS text editor.",
+        code: "edit policy block_mgmt.pol",
+        note: "If the switch asks whether you want to create a new file, select Yes."
+      },
+      {
+        type: "step",
+        number: 2,
+        title: "Paste the Policy Configuration",
+        content: "Copy and paste the configuration below into the editor. This uses the combined single-entry method for a cleaner setup.",
+        code: "entry deny_ssh_and_telnet { \n    if { \n        protocol tcp; \n        destination-port 22-23; \n    } \n    then { \n        deny; \n    } \n} \n\nentry allow_all { \n    if { \n    } \n    then {\n        permit; \n    } \n}",
+        note: "How to save and exit the EXOS editor: Press the Esc key, then press Shift + zz and press Enter."
+      },
+      {
+        type: "step",
+        number: 3,
+        title: "Verify the Policy Syntax",
+        content: "Before applying it to production, make sure there are no typos or syntax errors in the file.",
+        code: "check policy block_mgmt",
+        note: "Expected Result: You should see the message \"Policy file check successful.\" If there is an error, the switch will tell you which line needs correcting."
+      },
+      {
+        type: "step",
+        number: 4,
+        title: "Apply the New Policy to the VLANs",
+        content: "Apply the block_mgmt policy to the ingress (incoming) traffic of your targeted VLANs.",
+        code: "AAR:\nconfigure access-list block_mgmt vlan PCustomer ingress\nconfigure access-list block_mgmt vlan PDemo ingress\nconfigure access-list block_mgmt vlan PEmployee ingress\nconfigure access-list block_mgmt vlan Extranet ingress\n\nThe Loop:\nconfigure access-list block_mgmt vlan The_Loop ingress"
+      },
+      {
+        type: "step",
+        number: 5,
+        title: "Verify the Application and Traffic Counters",
+        content: "To ensure the policy is active and to monitor if traffic is successfully being blocked, use this command to check the ACL counters.",
+        code: "show access-list counter vlan PCustomer ingress",
+        note: "Replace PCustomer with other VLAN names to check their status as well."
+      },
+      {
+        type: "step",
+        number: 6,
+        title: "Save the Switch Configuration",
+        content: "Finally, save the switch's running configuration so your changes persist after a reboot or power cycle.",
+        code: "save",
+        note: "Press y (Yes) when prompted by the switch to confirm the save."
+      }
+    ]
   }
 ];
 
