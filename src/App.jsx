@@ -144,12 +144,12 @@ function Sidebar({ sops, deviceSetups, templates, activeSlug, onSelect, search, 
 }
 
 function DocViewer({ item, allItems }) {
-  const [copied, setCopied] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState(null);
 
-  const copyConfig = useCallback((text) => {
+  const copyCode = useCallback((text, index) => {
     navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
     });
   }, []);
 
@@ -167,79 +167,63 @@ function DocViewer({ item, allItems }) {
   }
 
   const isTemplate = item.type === "template";
+  const hasSections = item.sections && item.sections.length > 0;
 
   return (
     <article className="doc-viewer" id={item.slug}>
       <div className="doc-header">
-        <div className="doc-badge">{isTemplate ? "⚙️ Template" : "📋 SOP"}</div>
+        <div className="doc-badge">
+          {isTemplate ? "⚙️ Template" : item.type === "device" ? "🔧 Device Setup" : "📋 SOP"}
+        </div>
         <h1>{item.title}</h1>
         {item.description && <p className="doc-desc">{item.description}</p>}
-        {item.steps && (
+        {item.steps > 0 && (
           <p className="doc-meta">{item.steps} steps • Last updated {item.lastUpdated}</p>
         )}
-        {!item.steps && item.lastUpdated && (
+        {item.steps === 0 && item.lastUpdated && (
           <p className="doc-meta">Last updated {item.lastUpdated}</p>
         )}
       </div>
 
-      {isTemplate && (
-        <div className="template-actions">
-          <button
-            className="btn btn-primary"
-            onClick={() => copyConfig(item.content)}
-          >
-            {copied ? (
-              <>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Copied!
-              </>
-            ) : (
-              <>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                </svg>
-                Copy Config
-              </>
-            )}
-          </button>
-        </div>
-      )}
-
       <div className="doc-content">
-        {isTemplate ? (
+        {hasSections ? (
+          <div
+            className="sop-content"
+            dangerouslySetInnerHTML={{ __html: renderSections(item.sections, copiedIndex, copyCode) }}
+          />
+        ) : isTemplate && item.content ? (
           <pre className="code-block">
             <code>{item.content}</code>
           </pre>
-        ) : (
-          <div
-            className="sop-content"
-            dangerouslySetInnerHTML={{ __html: renderSOP(item) }}
-          />
-        )}
+        ) : null}
       </div>
     </article>
   );
 }
 
-function renderSOP(doc) {
-  if (!doc.sections) return `<p>${doc.content || ""}</p>`;
+function renderSections(sections, copiedIndex, copyCode) {
+  if (!sections) return "";
 
-  return doc.sections
-    .map((section) => {
+  return sections
+    .map((section, i) => {
       let html = "";
       if (section.type === "heading") {
         html += `<h2>${section.text}</h2>`;
       } else if (section.type === "step") {
+        const codeIndex = `code-${i}`;
         html += `
           <div class="sop-step">
             <div class="sop-step-number">${section.number}</div>
             <div class="sop-step-body">
               <h3>${section.title}</h3>
               ${section.content ? `<p>${section.content}</p>` : ""}
-              ${section.code ? `<pre class="code-block"><code>${escapeHtml(section.code)}</code></pre>` : ""}
+              ${section.code ? `
+                <div class="code-block-wrap">
+                  <button class="copy-btn-inline${copiedIndex === codeIndex ? " copied" : ""}" data-index="${codeIndex}">
+                    ${copiedIndex === codeIndex ? "✓ Copied" : "📋 Copy"}
+                  </button>
+                  <pre class="code-block"><code>${escapeHtml(section.code)}</code></pre>
+                </div>` : ""}
               ${section.note ? `<div class="sop-note">💡 ${section.note}</div>` : ""}
               ${section.warning ? `<div class="sop-warning">⚠️ ${section.warning}</div>` : ""}
             </div>
@@ -247,7 +231,7 @@ function renderSOP(doc) {
       } else if (section.type === "paragraph") {
         html += `<p>${section.text}</p>`;
       } else if (section.type === "list") {
-        html += `<ul>${section.items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
+        html += `<ul>${section.items.map((it) => `<li>${it}</li>`).join("")}</ul>`;
       } else if (section.type === "note") {
         html += `<div class="sop-note">💡 ${section.text}</div>`;
       } else if (section.type === "warning") {
@@ -310,6 +294,31 @@ export default function App() {
     document.getElementById(activeSlug)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setSidebarOpen(false);
   }, [activeSlug]);
+
+    useEffect(() => {
+    document.getElementById(activeSlug)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setSidebarOpen(false);
+  }, [activeSlug]);
+
+  useEffect(() => {
+    const handleCopyClick = (e) => {
+      const btn = e.target.closest(".copy-btn-inline");
+      if (!btn) return;
+      const codeBlock = btn.parentElement.querySelector("code");
+      if (!codeBlock) return;
+      const index = btn.dataset.index;
+      navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+        btn.textContent = "✓ Copied";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          btn.textContent = "📋 Copy";
+          btn.classList.remove("copied");
+        }, 2000);
+      });
+    };
+    document.addEventListener("click", handleCopyClick);
+    return () => document.removeEventListener("click", handleCopyClick);
+  }, []);
 
   return (
     <>
@@ -670,6 +679,35 @@ h1, h2, h3, h4 { font-family: var(--ff-head); letter-spacing: -0.025em; }
 .template-actions {
   display: flex; gap: 0.5rem;
   margin-bottom: 1.2rem;
+}
+/* Copy button inside steps */
+.code-block-wrap {
+  position: relative;
+  margin: 0.8rem 0;
+}
+.copy-btn-inline {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-family: var(--ff-body);
+  font-weight: 600;
+  background: rgba(255,255,255,0.1);
+  color: #d5f2ea;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  z-index: 5;
+}
+.copy-btn-inline:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.35);
+}
+.copy-btn-inline.copied {
+  background: rgba(15,118,110,0.5);
+  border-color: var(--mint-600);
 }
 
 /* Buttons */
