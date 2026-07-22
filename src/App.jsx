@@ -362,7 +362,7 @@ export default function App() {
       {/* Footer */}
       <footer className="container footer">
         <p className="footer-name">Power Mac Center — Network Team</p>
-        <p>Documentation Repository · SOPs & Templates</p>
+        <p>Documentation Repository · SOPs & Templates by Janus</p>
       </footer>
     </>
   );
